@@ -20,7 +20,7 @@ function Dashboard() {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/protected/dashboard', {
+        axios.get('https://backend-muf2.onrender.com/api/protected/dashboard', {
             headers: headers
         })
             .then(res => setUser(res.data.message))
@@ -28,7 +28,7 @@ function Dashboard() {
     }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/protected/tasks', {
+        axios.get('https://backend-muf2.onrender.com/api/protected/tasks', {
             headers: headers
         })
             .then(res => setTasks(res.data))
@@ -38,7 +38,7 @@ function Dashboard() {
     function addTask(e) {
         e.preventDefault();
 
-        axios.post('http://localhost:5000/api/protected/tasks', { title }, { headers })
+        axios.post('https://backend-muf2.onrender.com/api/protected/tasks', { title }, { headers })
             .then(
                 res => {
                     setTasks([...tasks, res.data]);
@@ -54,7 +54,7 @@ function Dashboard() {
 
     function updateTask(task) {
         const id = task._id
-        axios.put(`http://localhost:5000/api/protected/tasks/${id}`,
+        axios.put(`https://backend-muf2.onrender.com/api/protected/tasks/${id}`,
             { status: task.status === "done" ? "pending" : "done" },
             { headers }
         ).then(res => {
@@ -68,7 +68,7 @@ function Dashboard() {
     function deleteTask(id) {
 
         axios
-            .delete(`http://localhost:5000/api/protected/tasks/${id}`, { headers })
+            .delete(`https://backend-muf2.onrender.com/api/protected/tasks/${id}`, { headers })
             .then(() => {
                 setTasks(tasks.filter(t => t._id !== id));
             });
@@ -78,7 +78,7 @@ function Dashboard() {
     function saveEdit(id) {
 
         axios.put(
-            `http://localhost:5000/api/protected/tasks/${id}`,
+            `https://backend-muf2.onrender.com/api/protected/tasks/${id}`,
             { title: editTitle },
             { headers })
             .then(res => {
